@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}
+    <style>
+        .edit-box{
+            margin-left: 320px;
+            width: 800px;
+        }
+        .edit-head{
+            background-color: #2b71d9;
+            height: 30px;
+            line-height: 30px;
+        }
+        .edit-head .index-a{
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 15px;
+            display: inline-block;
+            padding: 0 10px;
+            margin-left: 10px;
+        }
+        .edit-head .my-a{
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 15px;
+            padding: 0 10px;
+            display: inline-block;
+            background-color: #000066;
+        }
+        .edit-content-box{
+            min-height: 700px;
+            border: 1px solid #CCCCCC;
+            margin-top: 15px;
+        }
+        .edit-content-box .edit-l .content-nav{
+            border-bottom: 1px solid #E7E7E7;
+            overflow: hidden;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        .edit-content-box .edit-l .content-nav ul .li-item1{
+            display: inline;
+            list-style: none;
+            float: left;
+            margin-right: 8px;
+            height: 28px;
+            overflow: hidden;
+            margin-left: -40px;
+        }
+        .edit-content-box .edit-l .content-nav ul .li-item2{
+            display: inline;
+            list-style: none;
+            float: left;
+            margin-right: 8px;
+            height: 28px;
+            overflow: hidden;
+        }
+        .edit-content-box .edit-l .content-nav ul a{
+            background: url("{% static 'img/sub_nav_bg.png'%}") repeat-x 0 0;
+            display: inline-block;
+            padding: 0 20px;
+            height: 28px;
+            line-height: 28px;
+            overflow: hidden;
+        }
+    </style>
+{% endblock %}
+
+{% block content-body %}
+    <div class="edit-box">
+        <div class="edit-head">
+            <a class="index-a" href="{% url 'index' %}">贴吧首页</a>
+            <a class="my-a">我的贴吧</a>
+        </div>
+        <div class="edit-content-box">
+            <div class="edit-l">
+                <div class="content-nav">
+                    <ul>
+                        <li class="li-item1">
+                            <a>基本资料</a>
+                        </li>
+                        <li class="li-item2">
+                            <a>签名档设置</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="edit-content">
+                    <div style="margin-left: 40px;margin-top: 50px">
+                        <h4 style="display: inline-block;font-size: 14px;width: 300px;border-bottom: 1px solid #e4e6eb;padding-bottom: 5px">当前头像</h4>
+                        <h4 style="display: inline-block;font-size: 14px;width: 300px;border-bottom: 1px solid #e4e6eb;padding-bottom: 5px;margin-left: 40px">设置新头像</h4>
+                    </div>
+                </div>
+                <div>
+                    <img src="/tieba/{{ request.user.head_img.url }}" style="margin-left: 40px;margin-top: 10px;vertical-align: top;width: 110px;height: 110px">
+                    <a href="{% url 'portrait' %}" style="margin-left: 230px;text-decoration: none;font-size: 14px">前往设置新头像</a>
+                </div>
+            </div>
+            <div class="edit-r"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+    <style>
+        .content-box{
+            margin: 0 auto;
+            width: 1200px;
+            margin-top: 50px;
+            position: relative;
+        }
+        .content-box .content-l{
+            border: 1px solid #DCDCDC;
+            background-color: #e4e6eb;
+            min-height: 700px;
+            width: 200px;
+            float: left;
+        }
+        .content-box .content-r{
+            border: 1px solid #DCDCDC;
+            min-height: 700px;
+            position: absolute;
+            left: 200px;
+            right: 50px;
+        }
+        .content-l .user-info{
+            padding: 10px 10px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        .content-l .tieba-list{
+            padding: 10px 10px;
+            font-size: 14px;
+            font-weight: 700;
+
+        }
+        .content-box .content-l .user-info .user-detail{
+            margin-top: 10px;
+        }
+        .content-box .content-l .user-info .user-detail .username{
+            margin-left: 10px;
+            text-decoration: none;
+        }
+        .tieba-box-icon{
+            background: url("{% static 'img/css1_00fb106.png' %}") no-repeat -200px -160px;
+            height: 35px;
+            line-height: 35px;
+            display: inline-block;
+            width: 84px;
+            text-align: center;
+            border: 1px solid #e4e6eb;
+            text-decoration: none;
+            color: black;
+            font-weight: 300;
+        }
+        .tieba-box-icon:hover{
+            background: url("{% static 'img/css1_00fb106.png' %}") no-repeat -304px -160px;
+            color: #005097;
+        }
+        .tieba-list .followed-list{
+            margin-top: 10px;
+            margin-left: -2px;
+        }
+    </style>
+{% endblock %}
+
+{% block content-body %}
+   <div class="content-box">
+        <div class="content-l">
+            <div class="user-info">
+                <span>我在贴吧</span>
+                <div class="user-detail">
+                    <a>
+                        <img style="width: 80px;height: 80px;vertical-align: top" src="/tieba/{{ request.user.head_img.url }}">
+                    </a>
+                    <a class="username" href="{% url 'home_main' %}?uid={{ request.user.id }}">{{ request.user.name }}</a>
+                </div>
+
+            </div>
+            <div class="tieba-list">
+                <span>爱逛的吧</span>
+                <div class="followed-list">
+                    {% for tieba in request.user.followed_tieba.all %}
+                        <a title="{{ tieba.name }}" class="tieba-box-icon" href="/tieba/f?kw={{ tieba.name }}">{{ tieba.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="content-r">
+
+        </div>
+   </div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}

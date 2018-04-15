@@ -1,0 +1,567 @@
+{% extends 'base.html' %}
+{% load tags %}
+{% block title %}
+    {% load staticfiles %}
+    <title>{{ article_obj.title }}</title>
+{% endblock %}
+{% block css %}
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .wrap-box {
+            background-color: #dceffe;
+            overflow: hidden;
+            margin-top: 50px;
+        }
+
+        .content-box {
+            margin: 0 auto;
+            width: 1000px;
+            margin-bottom: 100px;
+        }
+
+        .content-box .nav-1 {
+            height: 93px;
+            line-height: 90px;
+            position: relative;
+            background-color: #F2F4F7;
+            border-left: 1px solid #E5E5E5;
+            border-right: 1px solid #E5E5E5;
+            border-top: 1px solid #E5E5E5;
+        }
+
+        .content-box .nav-1 .tieba-icon {
+            padding: 2px;
+            line-height: 50px;
+            float: left;
+            background-color: #ffffff;
+            width: 50px;
+            height: 50px;
+            margin-left: 30px;
+            margin-top: 20px;
+        }
+
+        .content-box .nav-1 .tieba-info {
+            float: left;
+            margin-left: 30px;
+        }
+
+        .content-box .nav-1 .tieba-info .tieba-name {
+            font-weight: 500;
+            color: #333;
+            font-size: 22px;
+        }
+
+        .content-box .nav-1 .tieba-info .num-label {
+            color: #AAA;
+            margin-left: 10px;
+            margin-right: 8px;
+        }
+
+        .content-box .nav-1 .tieba-info .followed-icon {
+            background: url("/static/img/follow_icon.png") no-repeat 0 0;
+            display: inline-block;
+            width: 72px;
+            height: 32px;
+            margin-left: 15px;
+            vertical-align: middle;
+        }
+
+        .content-box .nav-1 .tieba-info .cancel-follow {
+            background: url("{% static 'img/cancel_follow.png' %}") no-repeat 0 0;
+            width: 130px;
+            height: 32px;
+            margin-left: 15px;
+            vertical-align: middle;
+            display: inline-block;
+        }
+
+        .content-box .nav-1 .tieba-info .num {
+            color: #ff7f3e;
+            margin-left: 3px;
+            margin-right: 5px;
+        }
+
+        .content-box .nav-1 .tieba-icon img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .content-box .nav-2 {
+            display: inline-block;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            background-image: linear-gradient(to bottom, #EEEFF3 0, #EAEEF1 100%);
+            border-top: 1px solid #DBDCE0;
+            border-bottom: 1px solid #DBDCE0;
+        }
+
+        .content-box .nav-2 a {
+            padding: 0 20px;
+            display: inline-block;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .content-box .nav-3 {
+            background-color: #f5f7fa;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            border-left: 1px solid #E5E5E5;
+            border-right: 1px solid #E5E5E5;
+            border-bottom: 1px solid #E5E5E5;
+        }
+
+        .content-box .nav-3 .span {
+            margin-left: 20px;
+        }
+
+        .content-box .nav-3 .return-tieba {
+            float: right;
+            margin-right: 20px;
+            text-decoration: none;
+        }
+
+        .content-box .article-body {
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+
+        .content-box .article-body .body-l {
+            width: 720px;
+            border-right: 1px solid #E5E5E5;
+            float: left;
+        }
+
+        .content-box .article-body .body-l .article-title {
+            height: 50px;
+            border-bottom: 1px solid #BBBDBF;
+            line-height: 50px;
+            padding-left: 20px;
+        }
+
+        .content-box .article-body .body-l .article-comment {
+            position: relative;
+        }
+
+        .clear {
+            clear: both;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .content-box .article-body .body-l .article-comment .item {
+            border-bottom: 1px solid #BBBDBF;
+            padding-top: 20px;
+            width: 720px;
+            min-height: 270px;
+            position: relative;
+        }
+
+        .content-box .article-body .body-l .article-comment .item .item-user {
+            float: left;
+            width: 120px;
+            text-align: center;
+
+        }
+
+        .content-box .article-body .body-l .article-comment .item .item-content {
+            float: left;
+            width: 560px;
+            padding-right: 20px;
+            padding-left: 20px;
+            overflow: hidden;
+            word-break: break-all;
+            word-wrap: break-word;
+        }
+
+        .content-box .article-body .body-l .article-comment .item .item-content .comment-content {
+            width: 560px;
+            float: left;
+            padding-bottom: 30px;
+        }
+
+        .content-box .article-body .body-l .article-comment .item .item-content-foot {
+            margin-top: 60px;
+            float: right;
+        }
+
+        .content-box .article-body .body-l .article-comment .item .item-content-foot .reply-sub-comment {
+            text-decoration: none;
+        }
+
+        .content-box .article-body .body-l .article-comment .item .sub-comment-box {
+            width: 560px;
+            background-color: #f7f8fa;
+            border: 1px solid #f0f1f2;
+            float: right
+        }
+
+        .content-box .article-body .body-l .article-comment .item .sub-comment-box .sub-comment {
+            width: 560px;
+            overflow: hidden;
+        }
+
+        .content-box .article-body .body-l .article-comment .item .sub-comment-box .sub-comment .user-icon {
+            width: 60px;
+            float: left;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .content-box .article-body .body-l .article-comment .item .sub-comment-box .sub-comment .user-icon img {
+            width: 32px;
+            height: 32px;
+        }
+
+        .content-box .article-body .body-l .article-comment .item .sub-comment-box .sub-comment .wrap-name-comment {
+            width: 500px;
+            float: left;
+            margin-top: 12px;
+
+        }
+
+        .content-box .article-body .body-l .article-comment .item .sub-comment-box .sub-comment .wrap-name-comment .user-name {
+            float: left;
+            text-decoration: none;
+            font-size: 14px;
+            margin-right: 3px;
+        }
+
+        .content-box .article-body .body-l .article-comment .item .sub-comment-box .sub-comment .wrap-name-comment .sub-comment-content {
+            float: left;
+            display: inline-block;
+        }
+
+        .content-box .article-body .body-l .article-comment .item .sub-comment-box .sub-comment .comment-date {
+            float: right;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            color: #333333;
+        }
+
+        .content-box .article-body .body-l .article-comment .item .sub-comment-box .sub-comment-textarea {
+            resize: none;
+            width: 500px;
+            margin-top: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .content-box .article-body .body-l .article-comment .item .sub-comment-box .sub-comment-commit {
+            background-color: #2b71d9;
+            border: 1px solid #2b71d9;
+            margin: 10px 0 10px 485px;
+            line-height: 20px;
+            text-align: center;
+            color: #ffffff;
+            cursor: pointer;
+            display: block;
+            width: 40px;
+            height: 20px;
+            font-size: 15px;
+        }
+
+        .content-box .article-body .body-l .article-comment .item .item-content-foot .span {
+            color: #999;
+            font-size: 14px;
+
+        }
+
+        .content-box .article-body .body-r {
+            width: 279px;
+{#            height: 700px;#}
+            float: right;
+        }
+
+        .content-box .nav-3 .num {
+            color: #ff7f3e;
+        }
+
+        .cursor {
+            cursor: pointer;
+        }
+
+        .hide {
+            display: none;
+        }
+        .form-box{
+            width: 1000px;
+            background-color: #EEEFF3;
+        }
+        .form-box .comment-form{
+            padding-top: 30px;
+            margin-left: 30px;
+        }
+        .form-box .form-submit{
+            width: 50px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            background-color: #3e89fa;
+            text-decoration: none;
+            border: 1px solid #2b71d9;
+            border-radius: 3px;
+            color: #FFFFFF;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            font-size: 15px;
+            display: inline-block;
+        }
+    </style>
+{% endblock %}
+
+{% block content-body %}
+    <div class="wrap-box">
+        <div class="content-box">
+            <div class="nav-1">
+                <div class="tieba-icon">
+                    <a href="/tieba/f?kw={{ tieba_obj.name }}">
+                        <img src="/tieba/{{ tieba_obj.head_img.url }}">
+                    </a>
+                </div>
+                <div class="tieba-info">
+                    <a class="tieba-name">{{ tieba_obj.name }}</a>
+                    {% is_followed request tieba_obj as is_followed %}
+                    {% if is_followed %}
+                        <a follow='0' class="cancel-follow cursor"></a>
+                    {% else %}
+                        <a follow='1' class="followed-icon cursor"></a>
+                    {% endif %}
+                    <span class="num-label">关注 :</span><span class="num">{{ tieba_obj.userprofile_set.count }}</span>
+                    <span class="num-label">贴子 :</span><span class="num">{{ tieba_obj.article_set.count }}</span>
+                </div>
+            </div>
+            <div class="nav-2">
+                <a href="#">看贴</a>
+                <a href="#">图片</a>
+                <a href="#">精品</a>
+                <a href="#">视频</a>
+                <a href="#">玩乐</a>
+            </div>
+            <div class="nav-3">
+                <span class="span"><span class="num">{{ article_obj.comment_set.all.count }}</span>回复贴，共<span
+                        class="num">1</span>页</span>
+                <a class="return-tieba" href="/tieba/f?kw={{ tieba_obj.name }}">&lt;返回贴吧</a>
+            </div>
+            <div class="article-body">
+                <div class="body-l">
+                    <div class="article-title">{{ article_obj.title }}</div>
+                    <div class="article-comment">
+                        <div class="item">
+                            <div class="item-user">
+                                <div class="user-icon">
+                                    <a>
+                                        <img style="width: 80px;height: 80px"
+                                             src="/tieba/{{ article_obj.author.head_img.url }}">
+                                    </a>
+                                </div>
+                                <div>
+                                    <a href="{% url 'home_main' %}?uid={{ article_obj.author.id }}" style="text-decoration: none">{{ article_obj.author.name }}</a>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <div class="comment-content">
+                                    <div style="min-height: 200px">{{ article_obj.content|safe }}</div>
+                                    <div class="item-content-foot">
+                                        <span class="span">1楼 {% return_format_time article_obj.create_date 1 %}</span>
+                                        <a class="article-reply" href="javascript:void(0)" style="text-decoration: none">回复</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        {% for comment_obj in comment_obj_list %}
+                                {% return_sub_comment_obj comment_obj article_obj as sub_comment_obj_list %}
+                                <div class="item">
+                                    <div class="item-user">
+                                        <div class="user-icon">
+                                            <a>
+                                                <img style="width: 80px;height: 80px"
+                                                     src="/tieba/{{ comment_obj.author.head_img.url }}">
+                                            </a>
+                                        </div>
+                                        <div><a href="{% url 'home_main' %}?uid={{ comment_obj.author.id }}"
+                                                style="text-decoration: none">{{ comment_obj.author.name }}</a></div>
+                                    </div>
+                                    <div class="item-content">
+                                        <div class="comment-content">
+                                            <div style="min-height: 200px">{{ comment_obj.content }}</div>
+                                            <div class="item-content-foot">
+                                                <input class="input" type="hidden" value="{{ sub_comment_obj_list.count }}">
+                                                <span class="span">{% return_floor %}楼 {% return_format_time comment_obj.create_date 1 %}</span>
+                                                <a class="reply-sub-comment" href="javascript:void(0)">
+                                                    回复{% if sub_comment_obj_list.count %}({{ sub_comment_obj_list.count }})
+                                                {% endif %}
+                                                </a>
+                                            </div>
+
+
+                                            {% if sub_comment_obj_list %}
+                                                <div class="sub-comment-box hide">
+                                                    {% for sub_comment_obj in sub_comment_obj_list %}
+                                                        <div class="sub-comment">
+                                                            <div class="user-icon">
+                                                                <a>
+                                                                    <img src="/tieba/{{ sub_comment_obj.author.head_img.url }}">
+                                                                </a>
+                                                            </div>
+                                                            <div class="wrap-name-comment">
+                                                                <div class="user-name">
+                                                                    <a class="sub-comment-author cursor" author_id="{{ sub_comment_obj.author.id }}"
+                                                                       style="text-decoration: none">{{ sub_comment_obj.author.name }}:</a>
+                                                                    {% if sub_comment_obj.to_whom %}
+                                                                        {% return_to_whom_obj sub_comment_obj as to_whom_obj %}
+                                                                        回复
+                                                                        <a href="#"
+                                                                           style="text-decoration: none">{{ to_whom_obj.name }}:</a>
+                                                                    {% endif %}
+                                                                </div>
+                                                                <div class="sub-comment-content">{{ sub_comment_obj.content }}</div>
+                                                            </div>
+                                                            <div class="comment-date">
+                                                                {% return_format_time sub_comment_obj.create_date 1 %}
+
+                                                                <a class="reply-somebody" href="javascript:void(0)">回复</a>
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                                    <div class="sub-comment-box hide">
+                                                        <form>
+                                                            <textarea style="resize: none"
+                                                                      class="sub-comment-textarea"></textarea>
+                                                            <input name="comment_id" type="hidden" class="article_id" value="{{ comment_obj.id }}">
+                                                            <input name='article_id' type="hidden" value="{{ article_obj.id }}">
+                                                            <a class="sub-comment-commit">发表</a>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            {% else %}
+                                                <div class="sub-comment-box hide">
+                                                    <form>
+                                                        <textarea style="resize: none"
+                                                                  class="sub-comment-textarea"></textarea>
+
+                                                        <input name="comment_id" class="article_id" type="hidden" value="{{ comment_obj.id }}">
+                                                        <input name='article_id' type="hidden" value="{{ article_obj.id }}">
+                                                        <a class="sub-comment-commit">发表</a>
+                                                    </form>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                        {% endfor %}
+                        {% clean_floor %}
+                    </div>
+                </div>
+                <div class="body-r">
+                </div>
+            </div>
+
+            <div class="form-box">
+                <form class="comment-form">
+                    <textarea placeholder="请输入内容" id="editor_id" name="content" style="width:700px;height:300px;"></textarea>
+                    <a class="form-submit">发表</a>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/jquery-3.2.1.js' %}"></script>
+    <script src="{% static 'js/jquery.cookie.js' %}"></script>
+    <script>
+        $(function () {
+            show_sub_comment()
+            show_reply_somebody()
+            commit_sub_comment()
+            textarea_focus()
+        });
+        var show_sub_comment = function () {
+            $('.reply-sub-comment').click(function () {
+                var sub_comment_box = $(this).parent().parent().find('.sub-comment-box')
+                var sub_comment_textarea=sub_comment_box.find('.sub-comment-textarea')
+                var sub_comment_num = $(this).parent().find('.input').val()
+                if (sub_comment_box.hasClass('hide')) {
+                    $(this).text('收起回复');
+                    sub_comment_box.removeClass('hide');
+                    sub_comment_textarea.removeClass('hide');
+                } else {
+                    if(sub_comment_num === '0'){
+                    $(this).text('回复');
+                    sub_comment_box.addClass('hide');
+                    sub_comment_textarea.addClass('hide')
+                    }else {
+                    $(this).text('回复'+'('+sub_comment_num+')');
+                    sub_comment_box.addClass('hide');
+                    sub_comment_textarea.addClass('hide')
+                    }
+
+                }
+
+            })
+        };
+        var show_reply_somebody = function () {
+            var reply_somebody = $('.reply-somebody')
+            reply_somebody.click(function () {
+                var sub_comment_textarea = $(this).parent().parent().siblings().find('.sub-comment-textarea')
+                sub_comment_textarea.empty()
+                var sub_comment_author = $(this).parent().parent().find('.sub-comment-author')
+                var comment_text = sub_comment_author.text()
+                var input = document.createElement('input')
+                $(input).prop('name','to_whom');
+                $(input).attr('value',sub_comment_author.attr('author_id'))
+                sub_comment_textarea.val('回复'+comment_text)
+                sub_comment_textarea.append(input)
+            })
+        }
+
+        var commit_sub_comment = function () {
+            $('.sub-comment-commit').click(function () {
+                var article_id = $(this).parent().find('[name="article_id"]').val();
+                var comment_id = $(this).parent().find('[name="comment_id"]').val();
+                var to_whom = $(this).parent().find('[name="to_whom"]').val();
+                var comment = $(this).parent().find('.sub-comment-textarea').val()
+                $.ajax({
+                    url: '/tieba/comment/',
+                    type: 'post',
+                    dataType: 'json',
+                    data : {article_id:article_id, comment_id:comment_id,'to_whom':to_whom, comment:comment},
+                    headers:{'X-CSRFToken': $.cookie('csrftoken')},
+                    success:function (datas) {
+                        if(datas.status){
+                            window.location.reload()
+                        }
+                    }
+                })
+            })
+        }
+        var textarea_focus = function () {
+            $('.article-reply').click(function () {
+                var target_top = $('.form-box').offset().top
+                $("html,body").scrollTop(target_top);
+                editor.focus()
+            })
+
+        }
+
+
+    </script>
+    <script charset="utf-8" src="{% static 'kindeditor/kindeditor-all.js' %}"></script>
+    <script charset="utf-8" src="{% static 'kindeditor/lang/zh-CN.js' %}"></script>
+    <script>
+        KindEditor.ready(function(K) {
+                window.editor = K.create('#editor_id');
+        });
+    </script>
+{% endblock %}

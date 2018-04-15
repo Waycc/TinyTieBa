@@ -1,0 +1,104 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .nav{
+            padding-left: 70px;
+            margin-top: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #333333;
+        }
+        .nav-title{
+            background: url("/static/img/search_logo_big_73c81f8.png");
+            width: 135px;
+            height: 45px;
+            display: inline-block;
+            vertical-align: bottom;
+        }
+        .nav-character{
+            display: inline-block;
+            margin-left: 50px;
+            font-size: 20px;
+            position: relative;
+        }
+        .login-form{
+            margin-top: 100px;
+            margin-left: 595px;
+        }
+        .login-button{
+            width: 70px;
+            height: 40px;
+            background-color: #3e89fa;
+            text-decoration: none;
+            border: 1px solid #2b71d9;
+            border-radius: 3px;
+            color: #FFFFFF;
+            margin-top: 30px;
+            position: absolute;
+            left: 600px;
+            font-size: 15px;
+        }
+        .registration-button{
+            width: 250px;
+            display: inline-block;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            background-color: #3e89fa;
+            text-decoration: none;
+            border: 1px solid #2b71d9;
+            border-radius: 3px;
+            color: #FFFFFF;
+            margin-top: 30px;
+            position: absolute;
+            left: 610px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .login-icon{
+            background:url("{% static 'img/2ba6a79e406dca923851313113b84813_reg_icons.png' %}") no-repeat 0 -48px;
+            width: 64px;
+            height: 32px;
+            display: inline-block;
+            line-height: 32px;
+            text-align: center;
+        }
+        .field-errors-msg{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <div class="nav-title"></div>
+        <span class="nav-character">用户注册</span>
+        <div style="float: right;margin-right: 70px;margin-top: 20px;width: 200px;height: 50px">已有账户？立即
+            <a class="login-icon" href="{% url 'login' %}">登录</a>
+        </div>
+    </div>
+
+    <div class="">
+        <form class="login-form" method="post">
+            {% csrf_token %}
+            <h2 style="margin-left: 70px">注册账户</h2>
+            <div>
+                <input name="email" placeholder="请设置登录邮箱" style="width: 250px;height: 30px;padding: 3px 5px" value="{{ request.POST.email }}">
+                <span class="field-errors-msg">{{ errors.field_errors.email.0.message }}</span>
+            </div>
+            <div>
+                <input name="name" placeholder="请设置用户名" style="width: 250px;height: 30px;padding: 3px 5px;margin-top: 3px" value="{{ request.POST.name }}">
+                <span class="field-errors-msg">{{ errors.field_errors.name.0.message }}</span>
+            </div>
+            <div>
+                <input name="password" type="password" placeholder="请设置登录密码" style="width: 250px;height: 30px;padding: 3px 5px;margin-top: 3px" value="{{ request.POST.password }}">
+                <span class="field-errors-msg">{{ errors.field_errors.password.0.message }}</span>
+            </div>
+            <button class='registration-button' type="submit">注册</button>
+        </form>
+    </div>
+</body>
+</html>

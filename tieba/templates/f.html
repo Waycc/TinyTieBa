@@ -1,0 +1,515 @@
+{% extends 'base.html' %}
+{% load tags %}
+{% load static %}
+{% load staticfiles %}
+{% block title %}
+    <title>{{ tieba_obj.name }}</title>
+{% endblock %}
+
+{% block css %}
+    <style>
+        .content-box{
+            margin:0 auto;
+            width: 1200px;
+            margin-top: 30px;
+        }
+        .content-box .head-content{
+            height: 330px;
+            position: relative;
+            background-color: #F2F4F7;
+        }
+        .content-box .content-body .content-nav{
+            height: 60px;
+            line-height: 60px;
+            background-image: linear-gradient(to bottom,#EEEFF3 0,#EAEEF1 100%);
+            border-top: 1px solid #DBDCE0;
+            border-bottom: 1px solid #DBDCE0;
+        }
+        .content-box .content-body .content-nav .nav-1{
+            display: inline-block;
+        }
+        .content-box .content-body .content-nav .nav-1 a{
+            padding: 0 20px;
+            display: inline-block;
+            text-decoration: none;
+            color: #333;
+        }
+        .content-box .content-body .content-nav .nav-2{
+            float: right;
+            margin-right: 20px;
+        }
+         .content-box .content-body .content-nav .nav-2 input{
+             height: 23px;
+             border: solid 1px #d9dbde;
+         }
+         .content-box .content-body .content-nav .nav-2 button{
+             background: url("/static/img/search_icon.png") no-repeat 0 0;
+             width: 34px;
+             height: 27px;
+             vertical-align: -7px;
+             margin-left: -6px;
+             border: solid 1px #d9dbde;
+         }
+         .content-box .head-content .background-img{}
+        .content-box .head-content .background-img img{
+            width: 100%;
+            height: 230px;
+            display: inline-block;
+        }
+         .content-box .head-content .head-icon{
+             background-color: #ffffff;
+             padding: 3px 3px;
+             overflow: hidden;
+             position: absolute;
+             left: 20px;
+             bottom: 20px;
+
+         }
+         .content-box .head-content .head-icon .head-icon-img{
+             background: url("{{ tieba_obj.head_img.url }}") no-repeat 0 0;
+             height: 40px;
+             width: 120px;
+             display: inline-block;
+         }
+        .content-box .head-content .head-icon img{
+             width: 150px;
+             height: 150px;
+            vertical-align: top;
+        }
+        .content-box .head-content .info-detail{
+            position: absolute;
+            left: 190px;
+            margin-top: 20px;
+            height: 74px;
+            min-width: 400px;
+        }
+        .content-box .head-content .info-detail .followed-icon{
+            background: url("/static/img/follow_icon.png") no-repeat 0 0;
+            display: inline-block;
+            width: 72px;
+            height: 32px;
+            vertical-align: bottom;
+        }
+        .content-box .head-content .info-detail .cancel-follow{
+            background: url("{% static 'img/cancel_follow.png' %}") no-repeat 0 0;
+            width: 130px;
+            height: 32px;
+            margin-left: 15px;
+            vertical-align: bottom;
+            display: inline-block;
+        }
+        .content-box .tieba-info .info-detail .tieba-name{
+            font-weight: 500;
+            color:#333;
+            font-size: 22px;
+        }
+        .content-box .tieba-info .info-detail .num-label{
+            color: #AAA;
+            margin-left: 10px;
+            margin-right: 8px;
+        }
+        .content-box .tieba-info .info-detail .num{
+            color: #ff7f3e;
+            margin-left: 3px;
+            margin-right: 5px;
+        }
+        .content-box .head-content .info-detail .tieba-description{
+            margin-top: 10px;
+            font-size: 15px;
+            color: #4c4c4c;
+        }
+
+        .content-body .main-content{
+        }
+        .content-body .main-content .main-content-l{
+            width: 900px;
+            list-style: none;
+            border-right: 1px solid #e4e6eb;
+            border-left: 1px solid #e4e6eb;
+            margin-top: 4px;
+
+        }
+        .content-body .main-content .main-content-r{
+            width: 300px;
+        }
+        .content-body .main-content .main-content-l .item{
+            border-bottom:1px dotted #e4e6eb ;
+            padding: 20px 0;
+            margin-left: -40px;
+            padding-left: 40px;
+            min-height: 20px;
+
+        }
+        .content-body .main-content .main-content-l .item .page-item{
+            display: inline-block;
+            padding: 0 7px;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            background-color: #ffffff;
+            border: 1px solid #e6e6e6;
+            color: #333333;
+            font-size: 14px;
+            text-decoration: none;
+            cursor: pointer;
+            margin-right: 4px;
+        }
+        .content-body .main-content .main-content-l .item .current-page{
+            border:none;
+            color: #3e89fa;
+        }
+        .content-body .main-content .main-content-l .item .comment-num-icon{
+            background: url("/static/img/comment_num_icon.png") no-repeat 0 0;
+            width: 52px;
+            height: 32px;
+            display: inline-block;
+            margin-right: 20px;
+            text-align: center;
+            line-height: 25px;
+            vertical-align: middle;
+            float: left;
+        }
+        .content-body .main-content .main-content-l .item .title{
+            text-decoration: none;
+        }
+        .content-body .main-content .main-content-l .item .article-cut{
+            margin-top: 10px;
+            color: #666;
+        }
+        .content-body .main-content .main-content-l .item-area-1{
+            display: inline-block;
+        }
+        .content-body .main-content .main-content-l .item-area-2{
+            display: inline-block;
+            float: right;
+            margin-right: 50px;
+        }
+        .content-body .main-content .main-content-l .item-area-2 .author{
+            margin-right: 80px;
+            color: #AAAAAA;
+        }
+        .content-body .main-content .main-content-l .item-area-2 .author .author-icon{
+            background: url("/static/img/little_icon.png") no-repeat -30px -60px;
+            width: 22px;
+            height: 16px;
+            display: inline-block;
+
+        }
+        .content-body .main-content .main-content-l .item-area-2 .last-replier{
+            margin-top: 10px;
+        }
+        .content-body .main-content .main-content-l .item-area-2 .last-replier .replier-icon{
+            background:url("/static/img/little_icon.png") no-repeat 0 -60px;
+            width: 25px;
+            height: 16px;
+            display: inline-block;
+        }
+        .content-body .main-content .main-content-l .item-area-2 .last-replier .replier-name{
+            color: #AAAAAA;
+        }
+        .content-body .main-content .main-content-l .item-area-2 .last-replier .replier-time{
+            color: #AAAAAA;
+            margin-left: 40px;
+        }
+        .aside-bar-box{
+            position: fixed;
+            right: 100px;
+            top: 200px;
+        }
+        .aside-background-img{
+            background-image: url("/static/img/aside_bar_icon.png");
+            background-repeat: no-repeat;
+            width: 45px;
+            height: 45px;
+            display: inline-block;
+        }
+        .aside-bar-box .aside-1 .aside-download{
+            background-position: 0 -220px;
+        }
+        .aside-bar-box .aside-2 .create-article2{
+            background-position: -220px -165px;
+        }
+        .aside-bar-box .aside-2 .create-article{
+            background-position: -220px -110px;
+        }
+        .aside-bar-box .aside-3 .aside-refresh{
+            background-position: -220px 0;
+        }
+        .aside-bar-box .aside-4 .aside-share{
+            background-position: -110px -165px;
+        }
+        .aside-bar-box .aside-5 .aside-favour{
+            background-position: 0 -165px;
+        }
+        .aside-bar-box .aside-6 .aside-top{
+            background-position: -165px -55px;
+        }
+        .form-box{
+            width: 1200px;
+            background-color: #EEEFF3;
+            margin: 0 auto;
+        }
+        .form-box .comment-form{
+            margin-left: 30px;
+        }
+        .form-box .comment-form .panels{
+            width: 700px;
+            height: 30px;
+            background-color: #CCCCCC;
+            line-height: 30px;
+        }
+        .form-box .comment-form .panels .panels-sticker{
+            background:url('{% static 'kindeditor/themes/default/default.png' %}') no-repeat 0 -608px ;
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+        }
+        .form-box #editor_title{
+            border: 1px solid #ccc;
+            width: 700px;
+            height: 30px;
+            padding-left: 10px;
+        }
+        .form-box .form-submit{
+            width: 50px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            background-color: #3e89fa;
+            text-decoration: none;
+            border: 1px solid #2b71d9;
+            border-radius: 3px;
+            color: #FFFFFF;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            font-size: 15px;
+            display: inline-block;
+        }
+        .cursor{
+            cursor: pointer;
+        }
+
+
+
+    </style>
+
+{% endblock %}
+
+{% block content-body %}
+    <div class="content-box">
+        <div class="head-content">
+            <div class="background-img">
+                <img src="{{ tieba_obj.background_img.url }}">
+            </div>
+            <div class="tieba-info">
+
+                <div class="head-icon" >
+                    <a href="#">
+                        <img src="{{ tieba_obj.head_img.url }}">
+                    </a>
+                </div>
+                <div class="info-detail">
+                    <a class="tieba-name">{{ tieba_obj.name }}</a>
+                    {% is_followed request tieba_obj as is_followed%}
+                    {% if is_followed %}
+                        <a follow='0' class="cancel-follow cursor"></a>
+                    {% else %}
+                        <a follow='1' class="followed-icon cursor"></a>
+                    {% endif %}
+                    <span class="num-label">关注 :</span><span class="num">{{ tieba_obj.userprofile_set.count}}</span>
+                    <span class="num-label">贴子 :</span><span class="num">{{ tieba_obj.article_set.count }}</span>
+                    <div class="tieba-description">为世界的美好而战</div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+
+            <div class="content-nav">
+                <div class="nav-1">
+                    <a href="#">看贴</a>
+                    <a href="#">图片</a>
+                    <a href="#">精品</a>
+                    <a href="#">视频</a>
+                    <a href="#">群组</a>
+                </div>
+                <div class="nav-2">
+                    <form>
+                        <input type="text">
+                        <button type="submit"></button>
+                    </form>
+                </div>
+            </div>
+            <div class="main-content">
+                <ul class="main-content-l">
+                    {% for article in article_obj_list %}
+                    <li class="item">
+                        <span class="comment-num-icon">{{ article.comment_set.count }}</span>
+                        <div class="item-area-1">
+                            <a class="title" href="p/{{ article.id }}/">
+                                {% return_limit_content article.title %}
+                            </a>
+                            <div class="article-cut">{% return_limit_content article.content %}</div>
+                        </div>
+                        <div class="item-area-2">
+                            <div class="author">
+                                <span class="author-icon"></span>
+                                <span class="author-name">{{ article.author.name }}</span>
+                            </div>
+                            <div class="last-replier">
+                                <span class="replier-icon"></span>
+                                {% if article.comment_set.all.last.create_date %}
+                                    <span class="replier-name">{% return_limit_name article.comment_set.all.last.author.name %}</span>
+                                    <span class="replier-time">{% return_format_time article.comment_set.all.last.create_date %}</span>
+                                {% else %}
+                                    <span class="replier-name">{% return_limit_name article.author.name %}</span>
+                                    <span class="replier-time">{% return_format_time article.create_date %}</span>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                    <li class="item">
+                        {% if article_obj_list.has_previous %}
+                            <a href="?kw={{ tieba_obj.name }}&p=1" class="page-item">首页</a>
+                            <a href="?kw={{ tieba_obj.name }}&p={{ article_obj_list.previous_page_number }}" class="page-item">&lt;上一页</a>
+                        {% endif %}
+                        {% return_page_ele article_obj_list tieba_obj%}
+                        {% if article_obj_list.has_next %}
+                            <a href="?kw={{ tieba_obj.name }}&p={{ article_obj_list.next_page_number }}" class="page-item">下一页&gt;</a>
+                            <a href="?kw={{ tieba_obj.name }}&p={{ article_obj_list.paginator.num_pages }}" class="page-item">尾页</a>
+                        {% endif %}
+                    </li>
+                </ul>
+                <div class="main-content-r">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="aside-bar-box">
+        <div class="aside-1"><a class="aside-download aside-background-img cursor"></a></div>
+        <div class="aside-2"><a class="create-article aside-background-img cursor"></a></div>
+        <div class="aside-3"><a class="aside-refresh aside-background-img cursor"></a></div>
+        <div class="aside-4"><a class="aside-share aside-background-img cursor"></a></div>
+        <div class="aside-5"><a class="aside-favour aside-background-img cursor"></a></div>
+        <div class="aside-6"><a class="aside-top aside-background-img cursor"></a></div>
+    </div>
+    <div class="form-box">
+        <span>发表新帖</span>
+        <span>发起投票</span>
+        <form class="comment-form">
+            {% csrf_token %}
+{#            <div>#}
+{#                <div class="panels"><span class="panels-sticker"></span></div>#}
+{#                <textarea id='text-area'style="width: 694px;height: 300px"></textarea>#}
+{#            </div>#}
+            <input type="hidden" name="tieba_id" value="{{ tieba_obj.id }}">
+            <div style="margin-top: 20px;margin-bottom: 30px">
+                <input name='title' id='editor_title' type="text" placeholder="请输入标题">
+                <span style="color: red;display: block" id="editor_title_error"></span>
+            </div>
+            <div id='editor_id_error' style="color: red"></div>
+            <textarea placeholder="请输入内容" id="editor_id" name="content" style="width:700px;height:300px;">
+            </textarea>
+            <a class='form-submit cursor' onclick="article_commit()">发 表</a>
+        </form>
+
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/jquery-3.2.1.js' %}"></script>
+    <script src="{% static 'js/jquery.cookie.js' %}"></script>
+    <script>
+        $(function () {
+            create_article();
+            follow();
+            unfollow()
+        });
+        var follow=function () {
+            var tieba_id = $('[name="tieba_id"]').val();
+            var follow_tag = $('.followed-icon');
+            var follow = follow_tag.attr('follow');
+            follow_tag.click(function () {
+                $.ajax({
+                    url: '/tieba/follow/',
+                    type: 'post',
+                    data:{tieba_id:tieba_id, follow:follow},
+                    dataType:'json',
+                    headers: {'X-CSRFToken': $.cookie('csrftoken')},
+                    success:function (datas) {
+                        if (datas.status){
+                            window.location.reload()
+                        }else{
+                            alert('关注失败，请重试')
+                        }
+                    }
+                })
+            })
+        };
+
+        var unfollow=function () {
+            var tieba_id = $('[name="tieba_id"]').val()
+            var follow_tag = $('.cancel-follow');
+            var follow = follow_tag.attr('follow');
+            follow_tag.click(function () {
+                 $.ajax({
+                    url: '/tieba/follow/',
+                    type: 'post',
+                    data:{tieba_id:tieba_id, follow:follow},
+                    dataType:'json',
+                    headers: {'X-CSRFToken': $.cookie('csrftoken')},
+                    success:function (datas) {
+                        if (datas.status){
+                            window.location.reload()
+                        }else{
+                            alert('取消关注失败，请重试')
+                        }
+                    }
+                })
+            })
+        };
+
+        var create_article=function () {
+
+            $('.aside-2').click(function () {
+                $('#editor_title').focus()
+            }).mouseover(function () {
+                $('.aside-2 a').addClass('create-article2').removeClass('create-article')
+            }).mouseout(function () {
+                $('.aside-2 a').addClass('create-article').removeClass('create-article2')
+            })
+        };
+        var article_commit=function () {
+            var title = $('#editor_title').val();
+            var content = editor.text();
+            var tieba_id = $('[name="tieba_id"]').val();
+            console.log(tieba_id)
+            $('#editor_title_error').empty();
+            $('#editor_id_error').empty();
+            $.ajax({
+                url: '/tieba/p/0',
+                type: 'Post',
+                data: {title:title, content:content, tieba_id:tieba_id},
+                dataType: 'json',
+                headers: {'X-CSRFToken': $.cookie('csrftoken')},
+                success: function (datas) {
+                    if(datas.status){
+                        alert('成功创建帖子')
+                        window.location.reload()
+                    }else {
+                        $('#editor_title_error').text(datas.field_errors.title);
+                        $('#editor_id_error').text(datas.field_errors.content);
+                    }
+                }
+            })
+        }
+    </script>
+    <script charset="utf-8" src="{% static 'kindeditor/kindeditor-all.js' %}"></script>
+    <script charset="utf-8" src="{% static 'kindeditor/lang/zh-CN.js' %}"></script>
+    <script>
+        KindEditor.ready(function(K) {
+                window.editor = K.create('#editor_id');
+        });
+    </script>
+{% endblock %}

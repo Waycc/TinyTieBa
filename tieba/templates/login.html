@@ -1,0 +1,98 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .nav{
+            padding-left: 70px;
+            margin-top: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #333333;
+        }
+        .nav-title{
+            background: url("/static/img/search_logo_big_73c81f8.png");
+            width: 135px;
+            height: 45px;
+            display: inline-block;
+            vertical-align: bottom;
+        }
+        .nav-character{
+            display: inline-block;
+            margin-left: 50px;
+            font-size: 20px;
+            position: relative;
+        }
+        .login-form{
+            margin-left: 590px;
+            margin-top: 100px;
+        }
+        .login-button{
+            width: 70px;
+            height: 40px;
+            background-color: #3e89fa;
+            text-decoration: none;
+            border: 1px solid #2b71d9;
+            border-radius: 3px;
+            color: #FFFFFF;
+            margin-top: 30px;
+            position: absolute;
+            left: 600px;
+            font-size: 15px;
+        }
+        .registration-button{
+            width: 70px;
+            display: inline-block;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            background-color: #3e89fa;
+            text-decoration: none;
+            border: 1px solid #2b71d9;
+            border-radius: 3px;
+            color: #FFFFFF;
+            margin-top: 30px;
+            position: absolute;
+            left: 800px;
+            font-size: 15px;
+        }
+        .field-errors-msg{
+            color: red;
+        }
+        .all-errors-msg{
+            color: red;
+            margin-left: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <div class="nav-title"></div>
+        <span class="nav-character">用户登录</span>
+    </div>
+    <div class="form-box">
+        <form class="login-form" method="post">
+            {% csrf_token %}
+            <h2 style="margin-left: 20px">请输入用户名和密码</h2>
+            <div class="all-errors-msg">{{ errors.all_errors }}</div>
+            <div style="position: relative">
+                <input name="email" placeholder="请输入邮箱" style="width: 250px;height: 30px;padding: 3px 5px" value="{{ request.POST.email }}">
+                <span class="field-errors-msg">{{ errors.field_errors.email.0.message }}</span>
+            </div>
+
+
+            <div style="position: relative">
+                <input name='password' placeholder="请输入密码" type="password" style="width: 250px;height: 30px;padding: 3px 5px;margin-top: 3px">
+                <span class="field-errors-msg">{{ errors.field_errors.password.0.message }}</span>
+            </div>
+            <button class="login-button" type="submit" style="cursor: pointer">登录</button>
+            <a class='registration-button' href="{% url 'registration' %}">注册</a>
+        </form>
+    </div>
+</body>
+<script src="{% static 'js/jquery-3.2.1.js'%}"></script>
+<script>
+
+</script>
+</html>

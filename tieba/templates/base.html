@@ -1,0 +1,177 @@
+{% load staticfiles %}
+{% load tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+{% block title %}
+    <title>Title</title>
+{% endblock %}
+    <style>
+        .nav-box{
+            border-bottom: solid grey 1px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            overflow: hidden;
+        }
+        .nav-box .nav{
+            margin:0 auto;
+            width: 700px;
+        }
+        .nav-box .nav-login{
+            float: right;
+        }
+        .search-box{
+            margin: 0 auto;
+            width: 900px;
+            padding-top: 35px;
+            position: relative;
+            overflow: hidden;
+        }
+        .search-box .search-icon{
+            background: url("/static/img/search_logo_big_73c81f8.png");
+            width: 135px;
+            height: 45px;
+            display: inline-block;
+            vertical-align: -10px;
+        }
+        .search-box .search-form{
+            display: inline-block;
+        }
+        .search-box input{
+            height: 30px;
+            width: 450px;
+        }
+        .search-box .search-button{
+            height: 38px;
+            width: auto;
+            text-align: center;
+            line-height: 35px;
+            display: inline-block;
+            border: solid 1px;
+            padding: 0 10px;
+            margin-left: -7px;
+        }
+        .search-box .enter-tieba{
+            background-color: #38f;
+            color: #ffffff;
+            font-weight: 700;
+            border: solid 1px;
+        }
+        .search-box .search-article{
+            background-color: #ffffff;
+            color: #38f;
+            font-weight: 700;
+        }
+        .nav-login .user-icon{
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            vertical-align: middle;
+        }
+
+
+
+
+    </style>
+    {% block css %}
+    {% endblock %}
+</head>
+<body>
+
+    <div class="nav-box">
+        <div class="nav">
+            <a href="#">网页</a>
+            <a href="#">新闻</a>
+            <a href="#">贴吧</a>
+            <a href="#">知道</a>
+            <a href="#">音乐</a>
+            <a href="#">图片</a>
+            <a href="#">视频</a>
+            <a href="#">地图</a>
+            <a href="#">文库</a>
+            <div class="nav-login">
+                {% is_AnonymousUser request as is_AnonymousUser %}
+                {% if  is_AnonymousUser %}
+                    <a href="{% url 'login' %}">登录</a>
+                    <a href="{% url 'registration' %}?next={{ request.path }}?kw={{ tieba_obj.name }}">注册</a>
+                {% else %}
+                    <img src="/tieba/{{ request.user.head_img.url }}/" class="user-icon">
+                    <a href="/tieba/index/" style="text-decoration: none">{{ request.user.name }}</a>
+                    <a href="{% url 'logout' %}?next={{ request.path }}?kw={{ tieba_obj.name }}" style="text-decoration: none">注销</a>
+                {% endif %}
+            </div>
+
+            {% block nav-user %}
+            {% endblock %}
+        </div>
+
+    </div>
+    <div class="search-box">
+        <a class="search-icon"></a>
+        <form method="get" class="search-form">
+            <input name='tieba_name' type="text">
+            <button type="submit" class="enter-tieba search-button">进入贴吧</button>
+            <button class="search-article search-button">全吧搜索</button>
+        </form>
+    </div>
+    {% block content-body %}
+    {% endblock %}
+
+{% block script %}
+{% endblock %}
+    <script src="{% static 'js/jquery-3.2.1.js' %}"></script>
+    <script src="{% static 'js/jquery.cookie.js' %}"></script>
+    <script>
+        $(function () {
+            follow();
+            unfollow()
+        });
+        var follow=function () {
+            var tieba_id = $('[name="tieba_id"]').val();
+            var follow_tag = $('.followed-icon');
+            var follow = follow_tag.attr('follow');
+            follow_tag.click(function () {
+                $.ajax({
+                    url: '/tieba/follow/',
+                    type: 'post',
+                    data:{tieba_id:tieba_id, follow:follow},
+                    dataType:'json',
+                    headers: {'X-CSRFToken': $.cookie('csrftoken')},
+                    success:function (datas) {
+                        if (datas.status){
+                            window.location.reload()
+                        }else{
+                            alert('关注失败，请重试')
+                        }
+                    }
+                })
+            })
+        };
+
+        var unfollow=function () {
+            var tieba_id = $('[name="tieba_id"]').val()
+            var follow_tag = $('.cancel-follow');
+            var follow = follow_tag.attr('follow');
+            follow_tag.click(function () {
+                 $.ajax({
+                    url: '/tieba/follow/',
+                    type: 'post',
+                    data:{tieba_id:tieba_id, follow:follow},
+                    dataType:'json',
+                    headers: {'X-CSRFToken': $.cookie('csrftoken')},
+                    success:function (datas) {
+                        if (datas.status){
+                            window.location.reload()
+                        }else{
+                            alert('取消关注失败，请重试')
+                        }
+                    }
+                })
+            })
+        };
+    </script>
+</body>
+</html>
