@@ -143,3 +143,29 @@ MEDIA_ROOT = 'tieba/media/'
 MEDIA_URL = 'media/'
 
 LOGIN_URL = "/tieba/login/"
+
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'redis_cache.RedisCache',
+#         'LOCATION': '127.0.0.1:6379',
+#         'OPTIONS': {
+#             'DB': 0,
+#             'PASSWORD': 'afc7c7180c3c43b51b1ebfebae76b5e8',
+#             'PARSER_CLASS': 'redis.connection.HiredisParser',
+#             'SOCKET_TIMEOUT': 10,
+#         },
+#     },
+# }
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://:123456@192.168.1.8:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
+SESSION_COOKIE_AGE = 30 * 60
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
