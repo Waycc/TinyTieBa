@@ -6,6 +6,7 @@ from django.utils.decorators import method_decorator
 import json
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from django.core.cache import cache
 # Create your views here.
 
 def is_login(func):
@@ -75,6 +76,7 @@ class LoginView(View):
             if user:
                 login(request, user)
                 next_url = request.GET.get('next','/tieba/index')
+                request.session['user'] = 'Wei'
                 return redirect(next_url)
             else:
                 errors['all_errors'] = '邮箱或密码错误'
@@ -105,6 +107,9 @@ class FView(View):
 
     def get(self, request):
         tieba_name = request.GET.get('tieba_name', '')
+        print(request.session.get('user'))
+
+        print(cache.get('1'))
         if tieba_name:
             return redirect('/tieba/f?kw=%s'%(tieba_name))
 
@@ -178,6 +183,7 @@ class HomeMainView(View):
     @method_decorator(login_required)
     def  post(self, request):
         pass
+
 
 class FollowView(View):
 
