@@ -22,5 +22,4 @@ from django.conf.urls import url
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('tieba/',include('tieba.urls')),
-    url(r'^ueditor/',include('DjangoUeditor.urls' )),
 ]
