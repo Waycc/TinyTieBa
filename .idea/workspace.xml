@@ -2,22 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9b20d17-f65a-4f45-9461-53b206d68060" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tieba/templates/all_tieba.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tieba/templates/new_tieba.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tieba/templates/search_article.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tieba/utils.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TinyTieBa/settings.py" afterPath="$PROJECT_DIR$/TinyTieBa/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TinyTieBa/urls.py" afterPath="$PROJECT_DIR$/TinyTieBa/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tieba/__init__.py" afterPath="$PROJECT_DIR$/tieba/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tieba/forms.py" afterPath="$PROJECT_DIR$/tieba/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tieba/models.py" afterPath="$PROJECT_DIR$/tieba/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tieba/templates/article.html" afterPath="$PROJECT_DIR$/tieba/templates/article.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tieba/templates/base.html" afterPath="$PROJECT_DIR$/tieba/templates/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tieba/templates/home.html" afterPath="$PROJECT_DIR$/tieba/templates/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tieba/urls.py" afterPath="$PROJECT_DIR$/tieba/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tieba/views.py" afterPath="$PROJECT_DIR$/tieba/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -146,7 +131,7 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TinyTieBa/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-62">
+            <state relative-caret-position="16">
               <caret line="157" column="10" lean-forward="false" selection-start-line="157" selection-start-column="10" selection-end-line="157" selection-end-column="10" />
               <folding />
             </state>
@@ -889,7 +874,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TinyTieBa/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-62">
+        <state relative-caret-position="16">
           <caret line="157" column="10" lean-forward="false" selection-start-line="157" selection-start-column="10" selection-end-line="157" selection-end-column="10" />
           <folding />
         </state>

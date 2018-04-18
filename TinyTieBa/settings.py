@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tieba.apps.TiebaConfig',
-    'DjangoUeditor'
 ]
 
 MIDDLEWARE = [
@@ -159,7 +158,7 @@ LOGIN_URL = "/tieba/login/"
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://:123456@192.168.1.8:6379/1",
+        "LOCATION": "redis://:123456@192.168.1.9:6379/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
