@@ -14,14 +14,36 @@
             height: 40px;
             text-align: center;
             line-height: 40px;
-            overflow: hidden;
         }
         .nav-box .nav{
             margin:0 auto;
             width: 700px;
         }
+        .nav-box .nav a{
+            text-decoration: none;
+        }
         .nav-box .nav-login{
             float: right;
+            position: relative;
+        }
+        .nav-box .nav-login .user-modal{
+            position: absolute;
+            border: 1px solid #333333;
+            width: 100px;
+            z-index: 99;
+        }
+        .nav-box .nav-login .tieba-list{
+            display: inline-block;
+            position: relative;
+            margin-right: 20px;
+        }
+        .nav-box .nav-login .tieba-list .tieba-list-item{
+            position: absolute;
+            min-height: 100px;
+            min-width: 80px;
+        }
+        .nav-box .nav-login .user-modal a{
+            text-decoration: none;
         }
         .search-box{
             margin: 0 auto;
@@ -59,11 +81,17 @@
             color: #ffffff;
             font-weight: 700;
             border: solid 1px;
+            cursor: pointer;
         }
         .search-box .search-article{
             background-color: #ffffff;
             color: #38f;
             font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            height: 36px;
+            padding-top: -3px;
+            cursor: pointer;
         }
         .nav-login .user-icon{
             display: inline-block;
@@ -71,10 +99,9 @@
             height: 32px;
             vertical-align: middle;
         }
-
-
-
-
+        .hidden{
+            display: none;
+        }
     </style>
     {% block css %}
     {% endblock %}
@@ -93,13 +120,21 @@
             <a href="#">地图</a>
             <a href="#">文库</a>
             <div class="nav-login">
+                <div class="tieba-list">
+                        <a href="{% url 'all_tieba' %}">所有贴吧</a>
+                    </div>
                 {% is_AnonymousUser request as is_AnonymousUser %}
                 {% if  is_AnonymousUser %}
                     <a href="{% url 'login' %}">登录</a>
                     <a href="{% url 'registration' %}?next={{ request.path }}?kw={{ tieba_obj.name }}">注册</a>
                 {% else %}
-                    <img src="/tieba/{{ request.user.head_img.url }}/" class="user-icon">
-                    <a href="/tieba/index/" style="text-decoration: none">{{ request.user.name }}</a>
+                    <div class="user-icon-name" style="display: inline-block">
+                        <img src="/tieba/{{ request.user.head_img.url }}/" class="user-icon">
+                        <a href="/tieba/index/" style="text-decoration: none">{{ request.user.name }}</a>
+                        <div class="user-modal hidden">
+                            <a href="/tieba/home/main/?uid={{ request.user.id }}">我的贴吧</a>
+                        </div>
+                    </div>
                     <a href="{% url 'logout' %}?next={{ request.path }}?kw={{ tieba_obj.name }}" style="text-decoration: none">注销</a>
                 {% endif %}
             </div>
@@ -111,10 +146,14 @@
     </div>
     <div class="search-box">
         <a class="search-icon"></a>
-        <form method="get" class="search-form">
-            <input name='tieba_name' type="text">
+        <form method="get" class="search-form" action="{% url 'tieba' %}">
+            {% if sk %}
+                <input name='tieba_name' type="text" value="{{ sk }}" style="padding-left: 10px">
+            {% else %}
+                <input name='tieba_name' type="text"  style="padding-left: 10px">
+            {% endif %}
             <button type="submit" class="enter-tieba search-button">进入贴吧</button>
-            <button class="search-article search-button">全吧搜索</button>
+            <span class="search-article search-button">全吧搜索</span>
         </form>
     </div>
     {% block content-body %}
@@ -127,7 +166,9 @@
     <script>
         $(function () {
             follow();
-            unfollow()
+            unfollow();
+            showModal();
+            searchArticle()
         });
         var follow=function () {
             var tieba_id = $('[name="tieba_id"]').val();
@@ -172,6 +213,34 @@
                 })
             })
         };
+
+        var showModal=function () {
+            $('.user-icon-name').mouseover(function () {
+                $('.user-modal').removeClass('hidden')
+            }).mouseout(function () {
+                $('.user-modal').addClass('hidden')
+            })
+        };
+
+        var searchArticle=function () {
+            $('.search-article').click(function () {
+                var sk = $('input[name="tieba_name"]').val();
+                if(sk){
+                    $.ajax({
+                        url: '/tieba/article',
+                        type:'post',
+                        dataType:'json',
+                        data:{sk:sk},
+                        headers:{'X-CSRFToken': $.cookie('csrftoken')},
+                        success:function (datas) {
+                            window.location.href = datas.url
+                        }
+                    })
+                }else {
+                    alert('请输入要搜索的内容')
+                }
+            })
+        }
     </script>
 </body>
 </html>

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block css %}
+    <style>
+        .form-submit{
+            width: 50px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            background-color: #3e89fa;
+            text-decoration: none;
+            border: 1px solid #2b71d9;
+            border-radius: 3px;
+            color: #FFFFFF;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            margin-left: 200px;
+            font-size: 15px;
+            display: inline-block;
+        }
+    </style>
+{% endblock %}
+
+{% block content-body %}
+    <div style="margin-top: 80px;margin-left: 600px">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div style="margin-top: 20px;margin-left: -5px">
+                <span style="color: red;">*</span>新贴吧名:
+                <input id="tieba_name" type="text" placeholder="请输入贴吧名" name="tieba_name" style="height: 20px;width: 200px">
+                <div style="color: red">{{ error_msg.tieba_name.0.message }}</div>
+            </div>
+
+
+            <div style="margin-top: 20px">
+                贴吧头部背景图:
+                <input type="file" id="background_img" name="background_img">
+            </div>
+
+
+            <div style="margin-top: 20px">
+                贴吧头像图:
+                <input type="file" id="head_img" name="head_img">
+            </div>
+            <input type="submit" value="提交" class="form-submit">
+
+
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content-body %}
+    <div style="margin-left: 300px;margin-top: 30px;border: 1px solid #333333;width: 900px;min-height: 500px">
+        <div style="margin-left: 20px;margin-top: 20px">
+            {% for article_obj in article_obj_list %}
+                <a style="margin-top: 20px" href="tieba/p/{{ article_obj.id }}">{{ article_obj.title }}</a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

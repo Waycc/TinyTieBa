@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}
+    <style>
+        .body{
+            width: 900px;
+            min-height: 300px;
+            border: 1px solid #333333;
+            margin-left: 300px;
+            margin-top: 20px;
+        }
+        .tieba-box-icon{
+            background: url("{% static 'img/css1_00fb106.png' %}") no-repeat -200px -160px;
+            height: 35px;
+            line-height: 35px;
+            display: inline-block;
+            width: 84px;
+            text-align: center;
+            border-right: 1px solid #e4e6eb;
+            text-decoration: none;
+            color: black;
+            font-weight: 300;
+        }
+        .tieba-box-icon:hover{
+            color: #3388ff;
+        }
+    </style>
+{% endblock %}
+
+{% block content-body %}
+    <div class="body">
+        {% if all_tieba_obj %}
+            <div style="margin-left: 20px;margin-top: 30px">
+                {% for tieba_obj in all_tieba_obj %}
+                <a href="{% url 'tieba' %}?kw={{ tieba_obj.name }}" class="tieba-box-icon">{{ tieba_obj.name }}</a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div style="margin-left: 20px;margin-top: 30px">
+                <a href="{% url 'tieba' %}?kw=0">还没有贴吧，现在就来创建第一个吧！</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

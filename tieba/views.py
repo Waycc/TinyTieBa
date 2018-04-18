@@ -6,31 +6,9 @@ from django.utils.decorators import method_decorator
 import json
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from django.core.cache import cache
+from django.utils.safestring import mark_safe
+from tieba.utils import is_login, query_set
 # Create your views here.
-
-def is_login(func):
-    def wrap(request,*args, **kwargs):
-        if request.user.__str__() != 'AnonymousUser' and request.user:
-            return redirect('/tieba/index/')
-        else:
-            return func(request,*args,**kwargs)
-    return wrap
-
-
-def query_set(obj_list, page, per_page_num=10):
-    """返回分页后的对象"""
-    paginator = Paginator(obj_list, per_page_num)
-    try:
-        query_sets = paginator.page(page)
-    except PageNotAnInteger:
-        query_sets = paginator.page(1)
-    except EmptyPage:
-        query_sets = paginator.page(paginator.num_pages)
-    return query_sets
-
-
-
 
 
 class Registration(View):
@@ -58,13 +36,13 @@ class Registration(View):
             print(errors)
         return render(request, 'registration.html', {'errors':errors})
 
+
 class LoginView(View):
     """用户登录处理视图"""
 
     @method_decorator(is_login)
     def get(self, request):
         return render(request, 'login.html')
-
 
     def post(self, request):
         login_form_obj = forms.UserLoginForm(request.POST)
@@ -76,7 +54,6 @@ class LoginView(View):
             if user:
                 login(request, user)
                 next_url = request.GET.get('next','/tieba/index')
-                request.session['user'] = 'Wei'
                 return redirect(next_url)
             else:
                 errors['all_errors'] = '邮箱或密码错误'
@@ -107,19 +84,18 @@ class FView(View):
 
     def get(self, request):
         tieba_name = request.GET.get('tieba_name', '')
-        print(request.session.get('user'))
-
-        print(cache.get('1'))
         if tieba_name:
             return redirect('/tieba/f?kw=%s'%(tieba_name))
 
         kw = request.GET.get('kw','')
         page = request.GET.get('p')
         tieba_obj = models.TieBa.objects.filter(name=kw).first()
+        if kw == '0':
+            return render(request, 'new_tieba.html')
         try:
             article_obj_list = tieba_obj.article_set.all()
         except AttributeError:
-            return HttpResponse('没有找到该贴吧')
+            return HttpResponse(mark_safe('没有找到该贴吧，<a href="/tieba/f?kw=0">现在创建新的贴吧</a>'))
 
         article_obj_list = query_set(article_obj_list,page,1)
         page_range = iter(range(1,article_obj_list.paginator.num_pages+1))
@@ -129,8 +105,32 @@ class FView(View):
                                           })
 
     def post(self, request):
-        pass
+        """创建新的贴吧"""
+        tieba_name = request.POST.get('tieba_name')
+        background_img = request.FILES.get('background_img')
+        head_img = request.FILES.get('head_img')
+        new_tieba_forms = forms.NewTieBaForm(request.POST)
+        error_msg = ''
+        if new_tieba_forms.is_valid():
+            if head_img and background_img:
+                new_tieba_obj = models.TieBa(name=tieba_name,
+                                             background_img=background_img,
+                                             head_img=head_img)
+            elif background_img:
+                new_tieba_obj = models.TieBa(name=tieba_name,
+                                             background_img=background_img)
+            elif head_img:
+                new_tieba_obj = models.TieBa(name=tieba_name,
+                                             head_img=head_img)
+            else:
+                new_tieba_obj = models.TieBa(name=tieba_name)
+            new_tieba_obj.save()
+            return redirect('/tieba/f?kw=%s'%tieba_name)
 
+        else:
+            error_msg = new_tieba_forms.errors.get_json_data()
+            print('no')
+        return render(request,'new_tieba.html',{'error_msg':error_msg})
 
 class ArticleView(View):
     """具体贴子的视图"""
@@ -141,7 +141,10 @@ class ArticleView(View):
         comment_obj_list = models.Comment.objects.filter(article=article_id, to_comment=None)
 
         article_obj = models.Article.objects.filter(id=article_id).first()
-        tieba_obj = article_obj.tieba
+        try:
+            tieba_obj = article_obj.tieba
+        except AttributeError as e:
+            return HttpResponse('没有找到该帖子')
         return render(request, 'article.html', {'article_obj':article_obj,
                                                 'tieba_obj':tieba_obj,
                                                 'comment_obj_list':comment_obj_list})
@@ -167,7 +170,7 @@ class ArticleView(View):
 
 
 class HomeMainView(View):
-
+    """个人资料页面"""
     @method_decorator(login_required)
     def get(self,request):
         is_login_user = False
@@ -186,7 +189,7 @@ class HomeMainView(View):
 
 
 class FollowView(View):
-
+    """处理贴吧关注"""
     def get(self, request):
         pass
 
@@ -204,8 +207,8 @@ class FollowView(View):
             msg['status'] = True
         return HttpResponse(json.dumps(msg))
 
-class EditProfile(View):
 
+class EditProfile(View):
     def get(self, request):
         return render(request, 'edit_profile.html')
 
@@ -214,30 +217,36 @@ class EditProfile(View):
 
 
 class Portrait(View):
+    """修改用户头像"""
     def get(self, request):
         return render(request, 'portrait.html')
 
     def post(self, request):
         img = request.FILES.get('img')
-        user_obj = models.UserProfile.objects.filter(id=request.user.id).first()
-        user_obj.head_img = img
-        user_obj.save()
+        if img:
+            user_obj = models.UserProfile.objects.filter(id=request.user.id).first()
+            user_obj.head_img = img
+            user_obj.save()
         return redirect('/tieba/profile/')
 
+
 class Comment(View):
+    """评论"""
     def get(self, request):
         pass
+
     def post(self, request):
         msg = {'status':False}
         to_whom = request.POST.get('to_whom','')
         article_id = request.POST.get('article_id','')
         comment_id = request.POST.get('comment_id','')
         comment = request.POST.get('comment','')
+        article_obj = models.Article.objects.filter(id=article_id).first()
         if comment.startswith('回复'):
             comment = comment.split(':',1)[1]
         if comment_id:
+            # 处理子评论
             to_comment_obj = models.Comment.objects.filter(id=comment_id).first()
-            article_obj = models.Article.objects.filter(id=article_id).first()
             comment_obj = models.Comment(
                     author=request.user,
                     article=article_obj,
@@ -247,9 +256,55 @@ class Comment(View):
             )
             comment_obj.save()
             msg['status'] = True
+        else:
+            # 处理非子评论
+            comment_obj_form = forms.CommentForm(request.POST)
+            msg = {'field_errors':{},'status':False}
+            if comment_obj_form.is_valid():
+                comment_obj = models.Comment(
+                    author = request.user,
+                    article = article_obj,
+                    content = comment,
+                )
+                comment_obj.save()
+                msg['status'] = True
+            else:
+                error_msg = comment_obj_form.errors.get_json_data()
+                msg['field_errors']['content'] = error_msg['comment'][0]['message']
+
         return HttpResponse(json.dumps(msg))
 
+
+class SearchArticle(View):
+    """处理文章搜索"""
+    def get(self,request):
+        sk = request.GET.get('sk')
+        if sk:
+           article_obj_list = models.Article.objects.filter(content__contains=sk)
+        else:
+            return HttpResponse('请输入搜索关键词')
+        print(article_obj_list)
+        return render(request,'search_article.html',{'article_obj_list':article_obj_list, 'sk':sk})
+
+
+    def post(self,request):
+        sk = request.POST.get('sk')
+        if not sk:
+            return HttpResponse('请输入搜索关键词')
+        url = ''.join([request.path,'?sk=',sk])
+        result = {'url':url}
+        return HttpResponse(json.dumps(result))
+
+
+
+
 def acc_logout(request):
+    """注销"""
     logout(request)
     next = request.GET.get('next', '/tieba/login')
     return redirect(next)
+
+def all_tieba(request):
+    """返回现有的贴吧列表"""
+    all_tieba_obj = models.TieBa.objects.all()
+    return render(request,'all_tieba.html',{'all_tieba_obj':all_tieba_obj})

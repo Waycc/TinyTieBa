@@ -15,6 +15,8 @@ urlpatterns = [
     url(r'home/main/', views.HomeMainView.as_view(), name='home_main'),
     path('profile/', views.EditProfile.as_view(), name='edit_profile'),
     path('profile/portrait/', views.Portrait.as_view(), name='portrait'),
-    path('comment/', views.Comment.as_view(), name='comment')
+    path('comment/', views.Comment.as_view(), name='comment'),
+    path('all/', views.all_tieba, name='all_tieba'),
+    path('article', views.SearchArticle.as_view(), name='search_article'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

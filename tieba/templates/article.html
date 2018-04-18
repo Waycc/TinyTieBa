@@ -427,7 +427,7 @@
                                                             <div class="comment-date">
                                                                 {% return_format_time sub_comment_obj.create_date 1 %}
 
-                                                                <a class="reply-somebody" href="javascript:void(0)">回复</a>
+                                                                <a class="reply-somebody" href="javascript:void(0)" style="text-decoration: none">回复</a>
                                                             </div>
                                                         </div>
                                                     {% endfor %}
@@ -467,8 +467,9 @@
 
             <div class="form-box">
                 <form class="comment-form">
+                    <div id="editor_id_error" style="color: red"></div>
                     <textarea placeholder="请输入内容" id="editor_id" name="content" style="width:700px;height:300px;"></textarea>
-                    <a class="form-submit">发表</a>
+                    <a class="form-submit cursor" onclick="comment_commit()">发表</a>
                 </form>
             </div>
 
@@ -514,6 +515,7 @@
         var show_reply_somebody = function () {
             var reply_somebody = $('.reply-somebody')
             reply_somebody.click(function () {
+                $('.sub-comment-textarea').focus();
                 var sub_comment_textarea = $(this).parent().parent().siblings().find('.sub-comment-textarea')
                 sub_comment_textarea.empty()
                 var sub_comment_author = $(this).parent().parent().find('.sub-comment-author')
@@ -553,6 +555,27 @@
                 editor.focus()
             })
 
+        };
+
+        var comment_commit=function () {
+            var comment = editor.text();
+            var article_id = $('input[name="article_id"]').val();
+            $('#editor_id_error').empty();
+            $.ajax({
+                url: '/tieba/comment/',
+                type: 'Post',
+                data: {comment:comment, article_id:article_id},
+                dataType: 'json',
+                headers: {'X-CSRFToken': $.cookie('csrftoken')},
+                success: function (datas) {
+                    if(datas.status){
+                        alert('成功发表评论');
+                        window.location.reload()
+                    }else {
+                        $('#editor_id_error').text(datas.field_errors.content);
+                    }
+                }
+            })
         }
 
 
