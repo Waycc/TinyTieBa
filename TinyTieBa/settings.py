@@ -155,16 +155,16 @@ LOGIN_URL = "/tieba/login/"
 #         },
 #     },
 # }
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://:123456@192.168.1.9:6379/1",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    }
-}
-
-SESSION_COOKIE_AGE = 30 * 60
-
-SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": "redis://:123456@192.168.1.9:6379/1",
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#         }
+#     }
+# }
+#
+# SESSION_COOKIE_AGE = 30 * 60
+#
+# SESSION_ENGINE = "django.contrib.sessions.backends.cache"

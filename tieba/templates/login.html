@@ -72,7 +72,26 @@
         <span class="nav-character">用户登录</span>
     </div>
     <div class="form-box">
-        <form class="login-form" method="post">
+        {% if is_get %}
+            <form class="login-form" method="post">
+            {% csrf_token %}
+            <h2 style="margin-left: 20px">请输入用户名和密码</h2>
+            <div class="all-errors-msg">{{ errors.all_errors }}</div>
+            <div style="position: relative">
+                <input name="email" placeholder="请输入邮箱" style="width: 250px;height: 30px;padding: 3px 5px" value="{{ user }}">
+                <span class="field-errors-msg">{{ errors.field_errors.email.0.message }}</span>
+            </div>
+
+
+            <div style="position: relative">
+                <input name='password' placeholder="请输入密码" type="password" value="{{ pwd }}" style="width: 250px;height: 30px;padding: 3px 5px;margin-top: 3px">
+                <span class="field-errors-msg">{{ errors.field_errors.password.0.message }}</span>
+            </div>
+            <button class="login-button" type="submit" style="cursor: pointer">登录</button>
+            <a class='registration-button' href="{% url 'registration' %}">注册</a>
+        </form>
+        {% else %}
+            <form class="login-form" method="post">
             {% csrf_token %}
             <h2 style="margin-left: 20px">请输入用户名和密码</h2>
             <div class="all-errors-msg">{{ errors.all_errors }}</div>
@@ -89,6 +108,7 @@
             <button class="login-button" type="submit" style="cursor: pointer">登录</button>
             <a class='registration-button' href="{% url 'registration' %}">注册</a>
         </form>
+        {% endif %}
     </div>
 </body>
 <script src="{% static 'js/jquery-3.2.1.js'%}"></script>

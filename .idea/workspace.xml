@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9b20d17-f65a-4f45-9461-53b206d68060" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/requirement.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TinyTieBa/settings.py" afterPath="$PROJECT_DIR$/TinyTieBa/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tieba/templates/login.html" afterPath="$PROJECT_DIR$/tieba/templates/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tieba/views.py" afterPath="$PROJECT_DIR$/tieba/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,7 +17,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/TinyTieBa$Test__tieba_templates_article_html.coverage" NAME="Test: tieba.templates.article.html Coverage Results" MODIFIED="1522593935578" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/TinyTieBa$test.coverage" NAME="test Coverage Results" MODIFIED="1523903497545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/TinyTieBa$test.coverage" NAME="test Coverage Results" MODIFIED="1524322428782" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -31,23 +35,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tieba/forms.py">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tieba/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="19" column="25" lean-forward="false" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+            <state relative-caret-position="-7973">
+              <caret line="4" column="52" lean-forward="false" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tieba/views.py">
+      <file leaf-file-name="list.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../FLasky/flask-env/Lib/site-packages/django/views/generic/list.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="692">
-              <caret line="229" column="42" lean-forward="false" selection-start-line="229" selection-start-column="42" selection-end-line="229" selection-end-column="42" />
+            <state relative-caret-position="-36">
+              <caret line="138" column="6" lean-forward="false" selection-start-line="138" selection-start-column="6" selection-end-line="138" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="requirement.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/requirement.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1716">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tieba/templates/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2236">
+              <caret line="86" column="92" lean-forward="false" selection-start-line="86" selection-start-column="92" selection-end-line="86" selection-end-column="92" />
               <folding>
-                <element signature="e#0#59#0" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#2;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#form#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -56,17 +81,9 @@
       <file leaf-file-name="new_tieba.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tieba/templates/new_tieba.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
+            <state relative-caret-position="728">
               <caret line="28" column="55" lean-forward="false" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
-              <folding>
-                <element signature="e#596#639#0#HTML" expanded="true" />
-                <element signature="e#746#788#0#HTML" expanded="true" />
-                <element signature="e#812#831#0#HTML" expanded="true" />
-                <element signature="e#936#969#0#HTML" expanded="true" />
-                <element signature="e#992#1010#0#HTML" expanded="true" />
-                <element signature="e#1092#1116#0#HTML" expanded="true" />
-                <element signature="e#1259#1283#0#HTML" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -74,65 +91,30 @@
       <file leaf-file-name="article.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tieba/templates/article.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="429" column="144" lean-forward="false" selection-start-line="429" selection-start-column="144" selection-end-line="429" selection-end-column="144" />
+            <state relative-caret-position="9568">
+              <caret line="368" column="48" lean-forward="false" selection-start-line="368" selection-start-column="48" selection-end-line="368" selection-end-column="48" />
               <folding>
-                <element signature="n#style#0;n#a#0;n#div#2;n#div#0;n#div#2;n#div#0;n#div#1;n#div#1;n#div#1;n#div#0;n#div#3;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#form#0;n#div#4;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#if#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="f.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tieba/templates/f.html">
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tieba/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="70">
-              <caret line="482" column="0" lean-forward="false" selection-start-line="482" selection-start-column="0" selection-end-line="505" selection-end-column="9" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edit_profile.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tieba/templates/edit_profile.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2002">
-              <caret line="16" column="29" lean-forward="false" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="portrait.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tieba/templates/portrait.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="3" column="48" lean-forward="false" selection-start-line="3" selection-start-column="48" selection-end-line="3" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="search_article.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tieba/templates/search_article.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="6" column="42" lean-forward="false" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
-              <folding>
-                <element signature="e#61#161#0#HTML" expanded="true" />
-                <element signature="e#176#218#0#HTML" expanded="true" />
-                <element signature="e#293#317#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TinyTieBa/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16">
-              <caret line="157" column="10" lean-forward="false" selection-start-line="157" selection-start-column="10" selection-end-line="157" selection-end-column="10" />
+            <state relative-caret-position="4082">
+              <caret line="157" column="0" lean-forward="false" selection-start-line="157" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -141,7 +123,7 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tieba/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
+            <state relative-caret-position="2938">
               <caret line="114" column="11" lean-forward="false" selection-start-line="114" selection-start-column="6" selection-end-line="114" selection-end-column="11" />
               <folding />
             </state>
@@ -153,8 +135,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -179,8 +161,8 @@
       <find>tieba-list</find>
       <find>回复</find>
       <find>注销</find>
-      <find>Artic</find>
       <find>tieba_id</find>
+      <find>Artic</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -198,7 +180,6 @@
         <option value="$PROJECT_DIR$/tieba/migrations/0020_auto_20180330_0227.py" />
         <option value="$PROJECT_DIR$/tieba/migrations/0023_auto_20180330_0228.py" />
         <option value="$PROJECT_DIR$/tieba/migrations/0019_auto_20180330_0226.py" />
-        <option value="$PROJECT_DIR$/tieba/templates/login.html" />
         <option value="$PROJECT_DIR$/tieba/templates/registration.html" />
         <option value="$PROJECT_DIR$/tieba/templates/index.html" />
         <option value="$PROJECT_DIR$/tieba/templates/edit_info.html" />
@@ -209,7 +190,6 @@
         <option value="$PROJECT_DIR$/tieba/models.py" />
         <option value="$PROJECT_DIR$/TinyTieBa/urls.py" />
         <option value="$PROJECT_DIR$/tieba/__init__.py" />
-        <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/tieba/templates/home.html" />
         <option value="$PROJECT_DIR$/tieba/utils.py" />
         <option value="$PROJECT_DIR$/tieba/templates/all_tieba.html" />
@@ -220,8 +200,11 @@
         <option value="$PROJECT_DIR$/tieba/templates/new_tieba.html" />
         <option value="$PROJECT_DIR$/tieba/forms.py" />
         <option value="$PROJECT_DIR$/tieba/templates/article.html" />
-        <option value="$PROJECT_DIR$/tieba/views.py" />
         <option value="$PROJECT_DIR$/TinyTieBa/settings.py" />
+        <option value="$PROJECT_DIR$/tieba/templates/login.html" />
+        <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/requirement.txt" />
+        <option value="$PROJECT_DIR$/tieba/views.py" />
       </list>
     </option>
   </component>
@@ -231,10 +214,10 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="35" />
-    <option name="y" value="9" />
-    <option name="width" value="1440" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="-1" />
+    <option name="y" value="23" />
+    <option name="width" value="1522" />
     <option name="height" value="836" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -264,17 +247,6 @@
               <item name="TinyTieBa" type="b2602c69:ProjectViewProjectNode" />
               <item name="TinyTieBa" type="462c0819:PsiDirectoryNode" />
               <item name="tieba" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TinyTieBa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TinyTieBa" type="462c0819:PsiDirectoryNode" />
-              <item name="tieba" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TinyTieBa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TinyTieBa" type="462c0819:PsiDirectoryNode" />
-              <item name="TinyTieBa" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -317,7 +289,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Django server.TinyTieBa">
+  <component name="RunManager" selected="Python.test">
     <configuration name="Test: tieba.templates.article.html" type="DjangoTestsConfigurationType" factoryName="Django tests" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -438,15 +410,15 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="35" y="9" width="1440" height="836" extended-state="0" />
+    <frame x="-1" y="23" width="1522" height="836" extended-state="1" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31304348" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30369356" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26509574" sideWeight="0.21159421" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39027983" sideWeight="0.21529563" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32971016" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32838038" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26509574" sideWeight="0.7884058" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36856747" sideWeight="0.7847044" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33773863" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -497,18 +469,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../../FLasky/flask-env/Lib/site-packages/django/db/models/fields/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="135" column="56" lean-forward="false" selection-start-line="135" selection-start-column="56" selection-end-line="135" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tieba/media/default/head.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../FLasky/flask-env/Lib/site-packages/django/contrib/auth/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="122">
@@ -624,13 +584,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tieba/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-810">
-          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="61" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tieba/templates/registration.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2496">
@@ -671,17 +624,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#32#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tieba/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -689,7 +631,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -697,17 +638,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="494">
           <caret line="23" column="41" lean-forward="false" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
-          <folding>
-            <element signature="e#633#665#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="3" column="12" lean-forward="true" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -715,7 +645,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-799">
           <caret line="59" column="9" lean-forward="false" selection-start-line="59" selection-start-column="9" selection-end-line="59" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -723,24 +652,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="111">
           <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="102" selection-end-column="9" />
-          <folding>
-            <element signature="e#3153#3225#0#HTML" expanded="false" />
-            <element signature="e#3327#3499#0#HTML" expanded="false" />
-            <element signature="n#if#0;n#!!top" expanded="false" />
-            <element signature="e#3741#4106#0#HTML" expanded="false" />
-            <element signature="e#4251#4297#0#HTML" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="7" column="51" lean-forward="false" selection-start-line="7" selection-start-column="51" selection-end-line="7" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/1.html" />
     <entry file="file://$PROJECT_DIR$/tieba/utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26">
@@ -755,10 +670,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="137">
           <caret line="39" column="47" lean-forward="false" selection-start-line="39" selection-start-column="47" selection-end-line="39" selection-end-column="47" />
-          <folding>
-            <element signature="e#866#908#0#HTML" expanded="false" />
-            <element signature="e#1163#1205#0#HTML" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -766,7 +677,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="99">
           <caret line="9" column="76" lean-forward="false" selection-start-line="9" selection-start-column="69" selection-end-line="9" selection-end-column="76" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -774,12 +684,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="99">
           <caret line="150" column="92" lean-forward="false" selection-start-line="150" selection-start-column="92" selection-end-line="150" selection-end-column="92" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#a#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#1;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -787,19 +691,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="156">
           <caret line="6" column="42" lean-forward="false" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
-          <folding>
-            <element signature="e#61#161#0#HTML" expanded="true" />
-            <element signature="e#176#218#0#HTML" expanded="true" />
-            <element signature="e#293#317#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tieba/templates/edit_profile.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2002">
+        <state relative-caret-position="416">
           <caret line="16" column="29" lean-forward="false" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -807,37 +705,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="78">
           <caret line="3" column="48" lean-forward="false" selection-start-line="3" selection-start-column="48" selection-end-line="3" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tieba/templates/new_tieba.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="28" column="55" lean-forward="false" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
-          <folding>
-            <element signature="e#596#639#0#HTML" expanded="true" />
-            <element signature="e#746#788#0#HTML" expanded="true" />
-            <element signature="e#812#831#0#HTML" expanded="true" />
-            <element signature="e#936#969#0#HTML" expanded="true" />
-            <element signature="e#992#1010#0#HTML" expanded="true" />
-            <element signature="e#1092#1116#0#HTML" expanded="true" />
-            <element signature="e#1259#1283#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tieba/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="114" column="11" lean-forward="false" selection-start-line="114" selection-start-column="6" selection-end-line="114" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tieba/templates/f.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
+        <state relative-caret-position="12532">
           <caret line="482" column="0" lean-forward="false" selection-start-line="482" selection-start-column="0" selection-end-line="505" selection-end-column="9" />
           <folding />
         </state>
@@ -845,37 +718,93 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tieba/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
+        <state relative-caret-position="390">
           <caret line="19" column="25" lean-forward="false" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TinyTieBa/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4082">
+          <caret line="157" column="0" lean-forward="false" selection-start-line="157" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tieba/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tieba/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2938">
+          <caret line="114" column="11" lean-forward="false" selection-start-line="114" selection-start-column="6" selection-end-line="114" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tieba/templates/new_tieba.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="728">
+          <caret line="28" column="55" lean-forward="false" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tieba/templates/article.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="429" column="144" lean-forward="false" selection-start-line="429" selection-start-column="144" selection-end-line="429" selection-end-column="144" />
+        <state relative-caret-position="9568">
+          <caret line="368" column="48" lean-forward="false" selection-start-line="368" selection-start-column="48" selection-end-line="368" selection-end-column="48" />
           <folding>
-            <element signature="n#style#0;n#a#0;n#div#2;n#div#0;n#div#2;n#div#0;n#div#1;n#div#1;n#div#1;n#div#0;n#div#3;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#4;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#if#0;n#!!top" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tieba/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2236">
+          <caret line="86" column="92" lean-forward="false" selection-start-line="86" selection-start-column="92" selection-end-line="86" selection-end-column="92" />
+          <folding>
+            <element signature="n#style#0;n#input#0;n#div#2;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#form#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="3" column="8" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../FLasky/flask-env/Lib/site-packages/django/views/generic/list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-36">
+          <caret line="138" column="6" lean-forward="false" selection-start-line="138" selection-start-column="6" selection-end-line="138" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirement.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1716">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tieba/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="692">
-          <caret line="229" column="42" lean-forward="false" selection-start-line="229" selection-start-column="42" selection-end-line="229" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TinyTieBa/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="157" column="10" lean-forward="false" selection-start-line="157" selection-start-column="10" selection-end-line="157" selection-end-column="10" />
+        <state relative-caret-position="-7973">
+          <caret line="4" column="52" lean-forward="false" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
           <folding />
         </state>
       </provider>

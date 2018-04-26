@@ -16,6 +16,7 @@ class Registration(View):
 
     @method_decorator(is_login)
     def get(self,request):
+
         return render(request, 'registration.html')
 
     def post(self,request):
@@ -42,7 +43,8 @@ class LoginView(View):
 
     @method_decorator(is_login)
     def get(self, request):
-        return render(request, 'login.html')
+        is_get = True
+        return render(request, 'login.html',{'user': 'root@126.com', 'pwd': 'asd456789','is_get':is_get})
 
     def post(self, request):
         login_form_obj = forms.UserLoginForm(request.POST)
@@ -104,6 +106,7 @@ class FView(View):
                                           'page_range':page_range
                                           })
 
+    @method_decorator(login_required)
     def post(self, request):
         """创建新的贴吧"""
         tieba_name = request.POST.get('tieba_name')
@@ -209,6 +212,8 @@ class FollowView(View):
 
 
 class EditProfile(View):
+
+    @method_decorator(login_required)
     def get(self, request):
         return render(request, 'edit_profile.html')
 
@@ -218,6 +223,8 @@ class EditProfile(View):
 
 class Portrait(View):
     """修改用户头像"""
+
+    @method_decorator(login_required)
     def get(self, request):
         return render(request, 'portrait.html')
 
@@ -242,6 +249,7 @@ class Comment(View):
         comment_id = request.POST.get('comment_id','')
         comment = request.POST.get('comment','')
         article_obj = models.Article.objects.filter(id=article_id).first()
+        print(article_id)
         if comment.startswith('回复'):
             comment = comment.split(':',1)[1]
         if comment_id:
